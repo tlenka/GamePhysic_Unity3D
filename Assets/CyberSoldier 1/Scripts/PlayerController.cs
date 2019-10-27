@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
+using System;
 
 public class PlayerController : MonoBehaviour {
 
@@ -28,6 +29,9 @@ public class PlayerController : MonoBehaviour {
 
     public bool PlayerCanMove;
 
+    //public delegate void AudioEventDelegate();
+    public event Action JumpEvent = delegate { };
+
     void Awake()
     {
         rigidbodies = GetComponentsInChildren<Rigidbody>();
@@ -40,6 +44,8 @@ public class PlayerController : MonoBehaviour {
         ToggleKinematics(true);
 
         PlayerCanMove = true;
+
+        //AudioEvent();
     }
 
 
@@ -173,6 +179,7 @@ public class PlayerController : MonoBehaviour {
     void Jump()
     {
         rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+        JumpEvent();
     }
 
     bool OverlapCapsule(LayerMask layer)
