@@ -29,8 +29,11 @@ public class PlayerController : MonoBehaviour {
 
     public bool PlayerCanMove;
 
-    //public delegate void AudioEventDelegate();
+    // ////////////////////////////////////////
+    private bool _isInAir;
+
     public event Action JumpEvent = delegate { };
+    public event Action LandingEvent = delegate { };
 
     void Awake()
     {
@@ -57,6 +60,7 @@ public class PlayerController : MonoBehaviour {
         {
             Jump();
             onTheGround = false;
+            _isInAir = true;
         }
     }
 
@@ -162,7 +166,11 @@ public class PlayerController : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         onTheGround = OverlapCapsule(defaultLayer);
-
+        if(_isInAir && onTheGround)
+        {
+            LandingEvent();
+            _isInAir = false;
+        }
         if (OverlapCapsule(enemyLayer))
         {
             ToggleKinematics(false);

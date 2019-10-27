@@ -7967,6 +7967,7 @@ MonoBehaviour:
   _player: {fileID: 391637250}
   _playerAudioSource: {fileID: 804307919}
   _jumpAudioClip: {fileID: 8300000, guid: 69bf493c702fe4cdc92c189813d9ed4a, type: 3}
+  _landingAudioClip: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
 --- !u!1001 &1586038522
 PrefabInstance:
   m_ObjectHideFlags: 0
