@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,17 +9,25 @@ public class PlayerAudioManager : MonoBehaviour
     [SerializeField] private AudioSource _playerAudioSource;
     [SerializeField] private AudioClip _jumpAudioClip;
     [SerializeField] private AudioClip _landingAudioClip;
+    [SerializeField] private AudioClip _walkingAudioClip;
     // Start is called before the first frame update
     void Start()
     {
-        _player.JumpEvent += Player_JumpEvent;
+        _player.WalkingEvent += Player_WalkingEvent;
         _player.LandingEvent += Player_LandingEvent;
+        _player.JumpEvent += Player_JumpEvent;
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Player_WalkingEvent()
     {
-        
+        _playerAudioSource.PlayOneShot(_walkingAudioClip);
+    }
+
+    //LandingEvent handler
+    private void Player_LandingEvent()
+    {
+        _playerAudioSource.PlayOneShot(_landingAudioClip);
     }
 
     //JumpEvent handler
@@ -27,9 +36,5 @@ public class PlayerAudioManager : MonoBehaviour
         _playerAudioSource.PlayOneShot(_jumpAudioClip);
     }
 
-    //LandingEvent handler
-    private void Player_LandingEvent()
-    {
-        _playerAudioSource.PlayOneShot(_landingAudioClip);
-    }
+   
 }
