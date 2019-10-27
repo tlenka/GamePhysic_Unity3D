@@ -200,5 +200,28 @@ public class PlayerController : MonoBehaviour {
             return false;
     }
 
-   
+    public event Action WalkingEvent = delegate { };
+
+    [SerializeField]
+    private void WalkingAudioEvent()
+    {
+        WalkingEvent();
+        _isWalking = true; 
+    }
+
+    public event Action StopWalkingEvent = delegate { };
+    private bool _isWalking;
+
+    [SerializeField]
+    private void StopWalkingAudioEvent()
+    {
+        Debug.Log(_isWalking);
+        if (_isWalking)
+        {
+            StopWalkingEvent();
+            _isWalking = false;
+        }
+    }
+
+    
 }
