@@ -31,9 +31,7 @@ public class PlayerController : MonoBehaviour {
 
     // ////////////////////////////////////////
     private bool _isInAir;
-
-    public event Action JumpEvent = delegate { };
-    public event Action LandingEvent = delegate { };
+    public event Action<string> AudioEvent = delegate { };
 
     void Awake()
     {
@@ -47,8 +45,6 @@ public class PlayerController : MonoBehaviour {
         ToggleKinematics(true);
 
         PlayerCanMove = true;
-
-        //AudioEvent();
     }
 
 
@@ -168,7 +164,7 @@ public class PlayerController : MonoBehaviour {
         onTheGround = OverlapCapsule(defaultLayer);
         if(_isInAir && onTheGround)
         {
-            LandingEvent();
+            AudioEvent("landingAudio");
             _isInAir = false;
         }
         if (OverlapCapsule(enemyLayer))
@@ -187,7 +183,7 @@ public class PlayerController : MonoBehaviour {
     void Jump()
     {
         rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
-        JumpEvent();
+        AudioEvent("jumpAudio");
     }
 
     bool OverlapCapsule(LayerMask layer)
@@ -200,25 +196,21 @@ public class PlayerController : MonoBehaviour {
             return false;
     }
 
-    public event Action WalkingEvent = delegate { };
-
     [SerializeField]
     private void WalkingAudioEvent()
     {
-        WalkingEvent();
+        AudioEvent("walkingAudio");
         _isWalking = true; 
     }
 
-    public event Action StopWalkingEvent = delegate { };
     private bool _isWalking;
 
     [SerializeField]
     private void StopWalkingAudioEvent()
     {
-        Debug.Log(_isWalking);
         if (_isWalking)
         {
-            StopWalkingEvent();
+            AudioEvent("stopWalkingAudio");
             _isWalking = false;
         }
     }
