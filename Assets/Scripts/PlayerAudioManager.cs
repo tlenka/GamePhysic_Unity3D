@@ -27,6 +27,7 @@ public class PlayerAudioManager : MonoBehaviour
         _playerAudioSource.PlayOneShot(_stopWalkingAudioClip);
     }
 
+    //
     private void Player_WalkingEvent()
     {
         _playerAudioSource.PlayOneShot(_walkingAudioClip);
