@@ -10,13 +10,21 @@ public class PlayerAudioManager : MonoBehaviour
     [SerializeField] private AudioClip _jumpAudioClip;
     [SerializeField] private AudioClip _landingAudioClip;
     [SerializeField] private AudioClip _walkingAudioClip;
+    [SerializeField] private AudioClip _stopWalkingAudioClip;
+
     // Start is called before the first frame update
     void Start()
     {
+        _player.StopWalkingEvent += Player_StopWalkingEvent;
         _player.WalkingEvent += Player_WalkingEvent;
         _player.LandingEvent += Player_LandingEvent;
         _player.JumpEvent += Player_JumpEvent;
         
+    }
+
+    private void Player_StopWalkingEvent()
+    {
+        _playerAudioSource.PlayOneShot(_stopWalkingAudioClip);
     }
 
     private void Player_WalkingEvent()

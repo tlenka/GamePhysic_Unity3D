@@ -7693,7 +7693,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251110695}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1251110698
 Camera:
   m_ObjectHideFlags: 0
@@ -7969,6 +7969,8 @@ MonoBehaviour:
   _jumpAudioClip: {fileID: 8300000, guid: 69bf493c702fe4cdc92c189813d9ed4a, type: 3}
   _landingAudioClip: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
   _walkingAudioClip: {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
+  _stopWalkingAudioClip: {fileID: 8300000, guid: 5a9383dda6cabc047b7a297602e93eb4,
+    type: 3}
 --- !u!1001 &1586038522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9103,7 +9105,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047575322}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2047575325
 Camera:
   m_ObjectHideFlags: 0
